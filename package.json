@@ -1,6 +1,6 @@
 {
   "name": "package-path",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Return the package path of given module filename",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "root"
   ],
   "repository": {
-    "url": "git@github.com:azer\/package-path.git",
+    "url": "git@github.com:azer/package-path.git",
     "type": "git"
   },
   "author": "azer",
