@@ -21,4 +21,11 @@ packagePath('/path/to/a/module.js', function (projectPath) {
 });
 ```
 
+Sync:
+
+```js
+packagePath.sync('/path/to/a/module.js')
+// => /path/to/the/package
+```
+
 See `test/index.js` for more info.

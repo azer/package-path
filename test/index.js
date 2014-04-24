@@ -33,6 +33,15 @@ test('failing when there is package.json', function (assert) {
   });
 });
 
+test('sync method', function (assert) {
+  assert.plan(4);
+
+  assert.equal(packagePath.sync(path.join(__filename, './fixtures/foo.js')), up('../'));
+  assert.equal(packagePath.sync(path.join(__filename, './fixtures/bar/bar.js')), up('../'));
+  assert.equal(packagePath.sync(path.join(__filename, './fixtures/bar/qux/qux.js')), up('../'));
+  assert.notOk(packagePath.sync('/tmp/foo.js', up('../')));
+});
+
 function up (p) {
   return path.join(path.dirname(__filename), p);
 }

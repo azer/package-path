@@ -1,13 +1,17 @@
 var path = require("path");
 var fs = require("fs");
 
-module.exports = start;
+packagePath.sync = function (filename) {
+  return sync(path.dirname(filename));
+};
 
-function start (filename, callback) {
-  return packagePath(path.dirname(filename), callback);
+module.exports = packagePath;
+
+function packagePath (filename, callback) {
+  return async(path.dirname(filename), callback);
 }
 
-function packagePath (dir, callback) {
+function async (dir, callback) {
   var pdir;
 
   fs.exists(path.join(dir, 'package.json'), function (exists) {
@@ -19,6 +23,18 @@ function packagePath (dir, callback) {
       return callback();
     }
 
-    packagePath(pdir, callback);
+    async(pdir, callback);
   });
+}
+
+function sync (dir) {
+  if (fs.existsSync(path.join(dir, 'package.json'))) {
+    return dir;
+  }
+
+  var pdir = path.join(dir, '../');
+
+  if (dir == pdir) return;
+
+  return sync(pdir);
 }
